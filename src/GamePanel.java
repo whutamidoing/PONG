@@ -48,8 +48,8 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void newProgressBar() {
-        progressBar1 = new ProgressBar(50, 70, 150, 10);
-        progressBar2 = new ProgressBar(50,140, 150,10);
+        progressBar1 = new ProgressBar(100, 70, 150, 10);
+        progressBar2 = new ProgressBar(GAME_WIDTH-250,70, 150,10);
     }
     
     public void paint(Graphics g) {

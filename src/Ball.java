@@ -40,10 +40,9 @@ public class Ball extends Rectangle {
         int dx = xVelocity;
         int dy = yVelocity;
 
-        // temporary curve adjustment (does NOT permanently modify yVelocity)
         if (isCurveApplied) {
-            double archHeight = 5.0;   // maximum vertical displacement
-            double archLength = 300.0; // horizontal distance (in frames or pixels) of one full arch
+            double archHeight = 7.5;   // maximum vertical displacement
+            double archLength = 100.0; // horizontal distance (in frames or pixels) of one full arch
 
             double frequency = (2 * Math.PI) / archLength;
 
