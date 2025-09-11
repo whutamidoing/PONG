@@ -106,15 +106,15 @@ public class GamePanel extends JPanel implements Runnable {
             if(paddle1.curveShotActive) {
                 ball.isCurveApplied = true;
                 paddle1.curveShotActive = false;
-                SoundPlayer.playSound("res/You-Crying.wav");
+                SoundPlayer.playSound("res/Zombie.wav", false);
             }
             else if(paddle1.powerShotActive) {
                 ball.isBoostedApplied = true;
                 paddle1.powerShotActive = false;
-                SoundPlayer.playSound("res/impact.wav");
+                SoundPlayer.playSound("res/impact.wav", false);
             }
             else {
-                SoundPlayer.playSound("res/harpfsh.wav");
+                SoundPlayer.playSound("res/harpfsh.wav", false);
             }
         }
         if(ball.intersects(paddle2)) {
@@ -133,15 +133,15 @@ public class GamePanel extends JPanel implements Runnable {
             if(paddle2.curveShotActive) {
                 ball.isCurveApplied = true;
                 paddle2.curveShotActive = false;
-                SoundPlayer.playSound("res/You-Crying.wav");
+                SoundPlayer.playSound("res/Zombie.wav", false);
             }
             else if(paddle2.powerShotActive) {
                 ball.isBoostedApplied = true;
                 paddle2.powerShotActive = false;
-                SoundPlayer.playSound("res/impact.wav");
+                SoundPlayer.playSound("res/impact.wav", false);
             }
             else {
-                SoundPlayer.playSound("res/harplongf.wav");
+                SoundPlayer.playSound("res/harplongf.wav", false);
             }
         }
 
@@ -162,18 +162,19 @@ public class GamePanel extends JPanel implements Runnable {
             score.player2Score++;
             newPaddles();
             newBall();
-            SoundPlayer.playSound("res/Blue-Lock.wav");
+            SoundPlayer.playSound("res/Blue-Lock.wav", false);
             System.err.println("Player 2: " + score.player2Score);
         }
         if(ball.x >= GAME_WIDTH - BALL_DIAMETER) {
             score.player1Score++;
             newPaddles();
             newBall();
-            SoundPlayer.playSound("res/Blue-Lock.wav");
+            SoundPlayer.playSound("res/Blue-Lock.wav", false);
             System.err.println("Player 1: " + score.player1Score);
         }
     }
-    
+
+    //Gameloop
     public void run() {
         long lastTime = System.nanoTime();
         double amountOfTicks = 60.0;
@@ -205,7 +206,8 @@ public class GamePanel extends JPanel implements Runnable {
                     paddle2.stunTimer = 0;
                     paddle1.skillReady = false;
                     paddle1.skillCooldown = 0;
-                    SoundPlayer.playSound("res/You-Crying.wav");
+                    SoundPlayer.playSound("res/You-Crying.wav", false);
+                    SoundPlayer.playSound("res/metavision.wav", false);
                     System.out.println("Player 1 stunned Player 2");
                 }
             }
@@ -216,7 +218,8 @@ public class GamePanel extends JPanel implements Runnable {
                     paddle1.stunTimer = 0;
                     paddle2.skillReady = false;
                     paddle2.skillCooldown = 0;
-                    SoundPlayer.playSound("res/You-Crying.wav");
+                    SoundPlayer.playSound("res/You-Crying.wav", false);
+                    SoundPlayer.playSound("res/metavision.wav", false);
                     System.out.println("Player 2 stunned Player 1");
                 }
             }
@@ -226,6 +229,7 @@ public class GamePanel extends JPanel implements Runnable {
                     paddle1.curveShotActive = true;
                     paddle1.skillReady = false;
                     paddle1.skillCooldown = 0;
+                    SoundPlayer.playSound("res/metavision.wav", false);
                     System.out.println("Player 1 used Curveshot");
                 }
             }
@@ -235,6 +239,7 @@ public class GamePanel extends JPanel implements Runnable {
                     paddle2.curveShotActive = true;
                     paddle2.skillReady = false;
                     paddle2.skillCooldown = 0;
+                    SoundPlayer.playSound("res/metavision.wav", false);
                     System.out.println("Player 2 used Curveshot");
                 }
             }
@@ -244,6 +249,7 @@ public class GamePanel extends JPanel implements Runnable {
                     paddle1.powerShotActive = true;
                     paddle1.skillReady = false;
                     paddle1.skillCooldown = 0;
+                    SoundPlayer.playSound("res/metavision.wav", false);
                     System.out.println("Player 1 used Powershot");
                 }
             }
@@ -253,6 +259,7 @@ public class GamePanel extends JPanel implements Runnable {
                     paddle2.powerShotActive = true;
                     paddle2.skillReady = false;
                     paddle2.skillCooldown = 0;
+                    SoundPlayer.playSound("res/metavision.wav", false);
                     System.out.println("Player 2 used Powershot");
                 }
             }

@@ -13,8 +13,8 @@ public class Paddle extends Rectangle{
 
     //Stun Mechanic
     boolean isStunned = false;
-    long stunTimer = 0;
-    static final long stunDuration = 60 * 1; // 1 second stun duration
+    float stunTimer = 0f;
+    static final float stunDuration = 60 * 0.5f; // 1 second stun duration
 
     //Curveshot Mechanic
     boolean curveShotActive = false;
