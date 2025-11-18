@@ -70,6 +70,7 @@ public class Paddle extends Rectangle{
         }
     }
     public void move(){
+        // Stun ability mechanic
         if (isStunned) {
             yVelocity = 0; 
             stunTimer++;

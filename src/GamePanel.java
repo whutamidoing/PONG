@@ -37,6 +37,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
     
     public void newBall() {
+        //Used viewport resolution to scale and size
         ball = new Ball((GAME_WIDTH/2)-(BALL_DIAMETER/2), random.nextInt(GAME_HEIGHT-BALL_DIAMETER), BALL_DIAMETER, BALL_DIAMETER);
     }
 
@@ -46,6 +47,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void newProgressBar() {
+        //Ability cooldown progress bar
         progressBar1 = new ProgressBar(100, 70, 150, 10);
         progressBar2 = new ProgressBar(GAME_WIDTH-250,70, 150,10);
     }
@@ -83,12 +85,14 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void checkCollision() {
+        //Ball bounce logic
         if(ball.y <= 0) {
             ball.setYDirection(-ball.yVelocity);
         }
         if(ball.y >= GAME_HEIGHT - BALL_DIAMETER) {
             ball.setYDirection(-ball.yVelocity);
         }
+        //Ball bounce on paddle 1
         if(ball.intersects(paddle1)) {
             ball.setXDirection(-ball.xVelocity);
             if(ball.xVelocity > 0) {
@@ -102,6 +106,7 @@ public class GamePanel extends JPanel implements Runnable {
             ball.isCurveApplied = false;
             ball.isBoostedApplied = false;
 
+            //Curve shot ability logic
             if(paddle1.curveShotActive) {
                 ball.isCurveApplied = true;
                 paddle1.curveShotActive = false;
@@ -116,6 +121,7 @@ public class GamePanel extends JPanel implements Runnable {
                 SoundPlayer.playSound("res/harpfsh.wav", false);
             }
         }
+        //Ball bounce on paddle 2
         if(ball.intersects(paddle2)) {
             ball.setXDirection(-ball.xVelocity);
             if(ball.xVelocity >0) {
@@ -129,6 +135,7 @@ public class GamePanel extends JPanel implements Runnable {
             ball.isCurveApplied = false;
             ball.isBoostedApplied = false;
 
+            //Curveshot ability logic
             if(paddle2.curveShotActive) {
                 ball.isCurveApplied = true;
                 paddle2.curveShotActive = false;
@@ -144,6 +151,7 @@ public class GamePanel extends JPanel implements Runnable {
             }
         }
 
+        //Limit movement to viewport height
         if(paddle1.y <= 0) {
             paddle1.y = 0;
         }
@@ -157,6 +165,7 @@ public class GamePanel extends JPanel implements Runnable {
             paddle2.y = GAME_HEIGHT - paddle2.height;
         }
 
+        //Scoring mechanics for player 1
         if(ball.x <= 0) {
             score.player2Score++;
             newPaddles();
@@ -164,6 +173,7 @@ public class GamePanel extends JPanel implements Runnable {
             SoundPlayer.playSound("res/Blue-Lock.wav", false);
             System.err.println("Player 2: " + score.player2Score);
         }
+        //Scoring mechanics for player 2
         if(ball.x >= GAME_WIDTH - BALL_DIAMETER) {
             score.player1Score++;
             newPaddles();
@@ -176,6 +186,7 @@ public class GamePanel extends JPanel implements Runnable {
     //Gameloop
     @Override
     public void run() {
+        //Minecraft gameloop
         long lastTime = System.nanoTime();
         double amountOfTicks = 60.0;
         double ns = 1000000000 / amountOfTicks;
@@ -199,6 +210,7 @@ public class GamePanel extends JPanel implements Runnable {
             paddle1.keyPressed(e);
             paddle2.keyPressed(e);
 
+            //Player 1 skill keybinds
             if (e.getKeyCode() == KeyEvent.VK_E) { 
                 // Player1 stuns Player2
                 if (!paddle2.isStunned && paddle1.skillReady) {
@@ -233,6 +245,7 @@ public class GamePanel extends JPanel implements Runnable {
                     System.out.println("Player 1 used Curveshot");
                 }
             }
+            //Player 2 skill keybinds
             if(e.getKeyCode() == KeyEvent.VK_K) {
                 // Curveshot for Player2
                 if (paddle2.skillReady) {

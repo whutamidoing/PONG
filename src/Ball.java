@@ -40,9 +40,10 @@ public class Ball extends Rectangle {
         int dx = xVelocity;
         int dy = yVelocity;
 
+        // Curveshot logic
         if (isCurveApplied) {
             double archHeight = 10;   // maximum vertical displacement
-            double archLength = 100.0; // horizontal distance (in frames or pixels) of one full arch
+            double archLength = 100.0; // horizontal distance of an arch
 
             double frequency = (2 * Math.PI) / archLength;
 
@@ -56,6 +57,7 @@ public class Ball extends Rectangle {
             }
         }
 
+        // Powershot double x velocity
         if(isBoostedApplied) {
             dx *= 2;
         }
@@ -66,6 +68,7 @@ public class Ball extends Rectangle {
         int minY = 0;
         int maxY = GamePanel.GAME_HEIGHT - this.height;
 
+        // Prevent ball from going out of bounds when using physics
         while (newY < minY || newY > maxY) {
             if (newY < minY) {
                 newY = minY + (minY - newY);
