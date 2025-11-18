@@ -5,12 +5,12 @@ import javax.swing.*;
 
 public class GamePanel extends JPanel implements Runnable {
 
-    static final int GAME_WIDTH = 1000;
+    static final int GAME_WIDTH = 1440;
     static final int GAME_HEIGHT = (int)(GAME_WIDTH * (0.5555));
     static final Dimension SCREEN_SIZE = new Dimension(GAME_WIDTH, GAME_HEIGHT);
-    static final int BALL_DIAMETER = 20;
+    static final int BALL_DIAMETER = 25;
     static final int PADDLE_WIDTH = 25;
-    static final int PADDLE_HEIGHT = 100;
+    static final int PADDLE_HEIGHT = (int)(GAME_HEIGHT * 0.20);
     Thread gameThread;
     Random random;
     Paddle paddle1;
@@ -41,8 +41,8 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void newPaddles() {
-        paddle1 = new Paddle(0, (GAME_HEIGHT/2)-(PADDLE_HEIGHT/2), PADDLE_WIDTH, PADDLE_HEIGHT, 1);
-        paddle2 = new Paddle(GAME_WIDTH-PADDLE_WIDTH, (GAME_HEIGHT/2)-(PADDLE_HEIGHT/2), PADDLE_WIDTH, PADDLE_HEIGHT, 2);
+        paddle1 = new Paddle(0+50, (GAME_HEIGHT/2)-(PADDLE_HEIGHT/2), PADDLE_WIDTH, PADDLE_HEIGHT, 1);
+        paddle2 = new Paddle(GAME_WIDTH-PADDLE_WIDTH-50, (GAME_HEIGHT/2)-(PADDLE_HEIGHT/2), PADDLE_WIDTH, PADDLE_HEIGHT, 2);
     }
 
     public void newProgressBar() {

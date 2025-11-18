@@ -12,7 +12,7 @@ public class Ball extends Rectangle {
     boolean isBoostedApplied = false;
 
     long curveTimer = 0;
-    static final long curveDuration = 60 * 2;
+    static final long curveDuration = 60 * 2; //120 frames
     int adjustedY = yVelocity;
 
     Ball(int x, int y, int width, int height) {
@@ -41,7 +41,7 @@ public class Ball extends Rectangle {
         int dy = yVelocity;
 
         if (isCurveApplied) {
-            double archHeight = 7.5;   // maximum vertical displacement
+            double archHeight = 10;   // maximum vertical displacement
             double archLength = 100.0; // horizontal distance (in frames or pixels) of one full arch
 
             double frequency = (2 * Math.PI) / archLength;
