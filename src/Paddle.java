@@ -9,12 +9,12 @@ public class Paddle extends Rectangle{
 
     boolean skillReady = true;
     long skillCooldown = 0;
-    static final long skillCooldownDuration = 60 * 10; // 10 seconds cooldown
+    static final long SKILL_COOLDOWN_DURATION = 60 * 10; // 10 seconds cooldown
 
     //Stun Mechanic
     boolean isStunned = false;
     float stunTimer = 0f;
-    static final float stunDuration = 60 * 0.5f; // 1 second stun duration
+    static final float STUN_DURATION = 60 * 0.5f; // 1 second stun duration
 
     //Curveshot Mechanic
     boolean curveShotActive = false;
@@ -73,14 +73,14 @@ public class Paddle extends Rectangle{
         if (isStunned) {
             yVelocity = 0; 
             stunTimer++;
-            if (stunTimer >= stunDuration) {
+            if (stunTimer >= STUN_DURATION) {
                 isStunned = false;
                 stunTimer = 0;
             }
         }
         if(!skillReady) {
             skillCooldown++;
-            if (skillCooldown >= skillCooldownDuration) {
+            if (skillCooldown >= SKILL_COOLDOWN_DURATION) {
                 skillReady = true;
                 skillCooldown = 0;
             }

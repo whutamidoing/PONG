@@ -12,8 +12,6 @@ public class GamePanel extends JPanel implements Runnable {
     static final int PADDLE_WIDTH = 25;
     static final int PADDLE_HEIGHT = 100;
     Thread gameThread;
-    Image image;
-    Graphics graphics;
     Random random;
     Paddle paddle1;
     Paddle paddle2;
@@ -52,6 +50,7 @@ public class GamePanel extends JPanel implements Runnable {
         progressBar2 = new ProgressBar(GAME_WIDTH-250,70, 150,10);
     }
     
+    @Override
     public void paint(Graphics g) {
         super.paint(g);
         draw(g);
@@ -61,12 +60,12 @@ public class GamePanel extends JPanel implements Runnable {
         if(paddle1.skillReady) {
             progressBar1.progress = progressBar1.width;
         }else {
-            progressBar1.progress = (int)((paddle1.skillCooldown / (double)Paddle.skillCooldownDuration) * progressBar1.width) ;
+            progressBar1.progress = (int)((paddle1.skillCooldown / (double)Paddle.SKILL_COOLDOWN_DURATION) * progressBar1.width) ;
         }
         if(paddle2.skillReady) {
             progressBar2.progress = progressBar2.width;
         } else {
-            progressBar2.progress = (int)((paddle2.skillCooldown / (double)Paddle.skillCooldownDuration) * progressBar2.width);            
+            progressBar2.progress = (int)((paddle2.skillCooldown / (double)Paddle.SKILL_COOLDOWN_DURATION) * progressBar2.width);            
         }
 
         paddle1.draw(g);
@@ -175,6 +174,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     //Gameloop
+    @Override
     public void run() {
         long lastTime = System.nanoTime();
         double amountOfTicks = 60.0;
